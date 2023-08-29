@@ -1,5 +1,5 @@
 # Bitácora - Primer Proyecto Sistemas Embebidos
-## Creacción de la imagen mínima con Yocto Project
+## 1.Creacción de la imagen mínima con Yocto Project
 Yocto es una herramienta que nos permite crear imágenes a la medida mediante el sistema modular de Linux, para esto usamos el componente Poky, que contienen toda la información necesaria para poder llevar a cabo el desarrollo de dichas imágenes, por lo que debemos instalar Yocto, junto con algunas de sus dependencias y clonar el repositorio para poder iniciar, para ello debemos usar: 
 ```bash
 sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool
@@ -40,5 +40,10 @@ Y una vez finalizado el proceso se exporta a la computadura local mediente el co
 scp jordanimejia@172.176.181.48:/home/jordanimejia/yocto/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.wic.vmdk "D:\Taller_Emb"
 ```
 
-## Agregar recetas a mi imagen 
+Con esta imagen mínima agregada a la herramienta Virtual Box, se debería generar algo como esto 
+![imagen_minima](https://github.com/Jormq99/TSE-proyecto1/assets/99856936/9f30429d-6537-4b8b-9209-075a3b1c9d6e)
+
+El user `root` es generado por defecto y permite llevar a cabo tareas administrativas con credenciales de súper usuario, pero de momento solo se ingresó para la demostración de la funcionalidad de la imagen generada.
+
+## 2.Agregar recetas a mi imagen 
 ### "Poner como se agregraron las herramientas como python, editor vim u otros a la imagen"
