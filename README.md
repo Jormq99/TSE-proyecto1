@@ -39,3 +39,6 @@ Y una vez finalizado el proceso se exporta a la computadura local mediente el co
 ```bash
 scp jordanimejia@172.176.181.48:/home/jordanimejia/yocto/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.wic.vmdk "D:\Taller_Emb"
 ```
+
+## Agregar recetas a mi imagen 
+### "Poner como se agregraron las herramientas como python, vim a la imagen"
