@@ -41,4 +41,4 @@ scp jordanimejia@172.176.181.48:/home/jordanimejia/yocto/poky/build/tmp/deploy/i
 ```
 
 ## Agregar recetas a mi imagen 
-### "Poner como se agregraron las herramientas como python, vim a la imagen"
+### "Poner como se agregraron las herramientas como python, editor vim u otros a la imagen"
