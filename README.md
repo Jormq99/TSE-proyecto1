@@ -5,7 +5,7 @@ Yocto es una herramienta que nos permite crear imágenes a la medida mediante el
 sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool
 git clone git://git.yoctoproject.org/poky
 ```
-Una vez tenemos el repo en nuestra carpeta debemos acceder a él con el comando `cd poky`, una vez tenemos esto debemos definir con cual versión de yocto vamos a trabajar en este caso se usa la versión **4.0 Kirkstone**, para ello debemos usar los siguientes comandos
+Una vez tenemos el repo en nuestra carpeta debemos acceder a él con el comando `cd poky`, una vez tenemos esto, debemos definir con cual versión de yocto vamos a trabajar, en este caso se usa la versión **4.0 Kirkstone**, por lo que se usan los siguientes comandos
 ```bash
 git checkout -t origin/kirkstone -b my-kirkstone
 git pull
