@@ -90,4 +90,4 @@ Estas utilidades se escogieron debido a la necesidad del procesamiento de imáge
 bitbake core-image-base
 ```
 
-Importamos la imagen con el comando establecido [scp](README.md/importar-imagen-a-escritorio-local).
+Importamos la imagen con el comando establecido [scp](#importar-imagen-a-escritorio-local).
