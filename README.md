@@ -10,6 +10,9 @@ Una vez tenemos el repo en nuestra carpeta debemos acceder a él con el comando 
 git checkout -t origin/kirkstone -b my-kirkstone
 git pull
 ```
+> [!IMPORTANT]
+> Es importante que la versión sea LTS y tenga soporte durante el desarrollo
+
 Con esto ya podemos cargar los recursos y emepezar a configurar la imagen mínima, para cargar estos recursos se debe usar
 ```bash
 source oe-init-build-env
