@@ -11,18 +11,20 @@ git checkout -t origin/kirkstone -b my-kirkstone
 git pull
 ```
 > [!IMPORTANT]
-> Es importante que la versión sea LTS y tenga soporte durante el desarrollo
+> Es importante que la versión sea LTS y tenga soporte durante el desarrollo.
 
 Con esto ya podemos cargar los recursos y emepezar a configurar la imagen mínima, para cargar estos recursos se debe usar
 ```bash
 source oe-init-build-env
 ```
+
 Y una vez se inicie el entorno se dirige a la ubicación de configuración mediente:
 
 ```bash
 cd build/conf
 vim local.conf
 ```
+
 Este archivo de `local.conf` contiene la información correspondiente a las características que esperemos que tenga nuestra imagen, dentro de los primeros pasos debemos asegurarnos de descomentar las siguientes líneas del archivo, para acelerar el proceso de construcción
 
 ```
@@ -32,6 +34,9 @@ BB_SIGNATURE_HANDLER = "OEEquivHash"
 BB_HASHSERVE = "auto"
 ```
 Y agregar al final del archivo la indicación `IMAGE_FSTYPES += "wic.vmdk"` para que a la hora de que se cree la imagen, se genere un archivo con la extensión adecuada para poder correr la imágen en Virtual Box, con esto ya definido se puede proceder a generar la imágen, para ello se usa 
+
+> [!NOTE]
+> La extensión wic.vmdk, no es obligatoria en todos los casos, pero es requerida para este proyecto.
 
 ```bash
 bitbake -k core-image-minimal
@@ -86,12 +91,17 @@ IMAGE_INSTALL:append = " \
                  opencv \
                 "
 ```
+> [!WARNING] 
+> Si se agregan herramientas que no son parte de las recetas indicadas en los layers se va a generar un error, por lo que hay que asegurarse de que todo está incorporado de forma adecuada.
 
-Estas utilidades se escogieron debido a la necesidad del procesamiento de imágenes y video, por lo que la prueba se realiza para verificar si existe algún conflicto con estas librerías y resolverlo antes de la implementación de los programas con **_OpenVino_**, con esto claro, se procede a la creación de imagen **_base_**, ya no utilizamos la mínima
+Estas utilidades se escogieron debido a la necesidad del procesamiento de imágenes y video, por lo que la prueba se realiza para verificar si existe algún conflicto con estas librerías y resolverlo antes de la implementación de los programas con **_OpenVino_**, con esto claro, se procede a la creación de imagen **_base_**
 
 ```bash
 bitbake core-image-base
 ```
+> [!NOTE]
+> Al usar la imagen base se obtiene una mayor funcionalidad y la posibilidad de usar más recursos.
+
 
 Importamos la imagen con el comando establecido [scp](#importar-imagen-a-escritorio-local).
 
