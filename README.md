@@ -91,3 +91,10 @@ bitbake core-image-base
 ```
 
 Importamos la imagen con el comando establecido [scp](#importar-imagen-a-escritorio-local).
+
+Para finalizar probamos el comando vim y tambien la herramienta de python, primero creamos un archivo `.py` que se llame **hola** y agregamos la siguiente línea de codigo
+```python
+print("Imagen con python3 Primer Proyecto TSE - Jordani Mejía")
+```
+Salimos del editor de texto y podemos visualizar si funciona como debería usando `python3 hola.py`, esto nos debería arrojar algo como lo siguiente:
+![image](https://github.com/aleguillen4/20231sTSE/assets/99856936/d23dd264-e96c-4d8c-b82f-576f754591b3)
