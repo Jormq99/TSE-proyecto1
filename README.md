@@ -35,7 +35,7 @@ bitbake -k core-image-minimal
 ```
 
 Y una vez finalizado el proceso se exporta a la computadura local mediente el comando `scp` en la consola **cmd** con las siguiente indicación
-
+### Importar imagen a escritorio local
 ```bash
 scp jordanimejia@172.176.181.48:/home/jordanimejia/yocto/poky/build/tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.wic.vmdk "D:\Taller_Emb"
 ```
