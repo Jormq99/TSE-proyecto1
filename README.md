@@ -90,4 +90,4 @@ Estas utilidades se escogieron debido a la necesidad del procesamiento de imáge
 bitbake core-image-base
 ```
 
-Importamos la imagen con el comando establecido [scp imagenes]([https://pages.github.com/](https://github.com/Jormq99/TSE-proyecto1/blob/main/README.md#importar-imagen-a-escritorio-local)https://github.com/Jormq99/TSE-proyecto1/blob/main/README.md#importar-imagen-a-escritorio-local)
+Importamos la imagen con el comando establecido [scp imagenes]([https://pages.github.com/](https://github.com/Jormq99/TSE-proyecto1/blob/main/README.md#importar-imagen-a-escritorio-local)https://github.com/Jormq99/TSE-proyecto1/blob/main/README.md#importar-imagen-a-escritorio-local/).
