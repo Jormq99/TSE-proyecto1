@@ -46,7 +46,7 @@ Con esta imagen mínima agregada a la herramienta Virtual Box, se debería gener
 El user `root` es generado por defecto y permite llevar a cabo tareas administrativas con credenciales de súper usuario, pero de momento solo se ingresó para la demostración de la funcionalidad de la imagen generada.
 
 ## 2.Agregar recetas a mi imagen 
-Para agregar recetas a la imagen se descraga del repositorio de kirkstone la rama de `meta-openembedded` que posee un conjunto de recetas y configuraciones prácticas para nuestra imagen, como lo puede ser agregar `python3`, lo que a su vez permite utilizar bibliotecas como `OpenCV` entre otras cosas, par esto debemos clonar el repo con el siguiente comando:
+Para agregar recetas a la imagen se descarga del repositorio de kirkstone la rama de `meta-openembedded` que posee un conjunto de recetas y configuraciones prácticas para nuestra imagen, como lo puede ser agregar `python3`, lo que a su vez permite utilizar bibliotecas como `OpenCV` entre otras cosas, para esto debemos clonar el repo con el siguiente comando:
 ```bash
 git clone -b kirkstone https://github.com/openembedded/meta-openembedded.git
 ```
@@ -55,7 +55,7 @@ Y una vez que se tiene esto, usamos el comando:
 bitbake-layers add-layer meta-openembedded/meta-oe
 bitbake-layers add-layer meta-openembedded/meta-python
 ```
-Esto es de suma importancia para esta demostración, ya que nos permite agregar el `meta-oe` que a su vez nos permite usar herramientas como **vim** que son editores de texto o incluso **ssh** para servicios de red, al aplicar estos comandos, el archivo `bblayers.conf` se debería de ver como:
+Esto es de suma importancia para esta demostración, ya que nos permite agregar el `meta-oe` que a su vez nos permite usar herramientas como **_vim_** que son editores de texto o incluso **_ssh_** para servicios de red, al aplicar estos comandos, el archivo `bblayers.conf` se debería de ver como:
 ```
 # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
@@ -84,7 +84,7 @@ IMAGE_INSTALL:append = " \
                 "
 ```
 
-Estas utilidades se escogieron debido a la necesidad del procesamiento de imágenes y video, por lo que la prueba se realiza para verificar si existe algún conflicto con estas librerías y resolverlo antes de la implementación de los programas con **OpenVino**, con esto claro, se procede a la creación de imagen **base**, ya no utilizamos la mínima
+Estas utilidades se escogieron debido a la necesidad del procesamiento de imágenes y video, por lo que la prueba se realiza para verificar si existe algún conflicto con estas librerías y resolverlo antes de la implementación de los programas con **_OpenVino_**, con esto claro, se procede a la creación de imagen **_base_**, ya no utilizamos la mínima
 
 ```bash
 bitbake core-image-base
@@ -92,9 +92,10 @@ bitbake core-image-base
 
 Importamos la imagen con el comando establecido [scp](#importar-imagen-a-escritorio-local).
 
-Para finalizar probamos el comando vim y tambien la herramienta de python, primero creamos un archivo `.py` que se llame **hola** y agregamos la siguiente línea de codigo
+Para finalizar probamos el comando vim y tambien la herramienta de python, primero creamos un archivo `.py` que se llame **_hola_** y agregamos la siguiente línea de codigo
 ```python
 print("Imagen con python3 Primer Proyecto TSE - Jordani Mejía")
 ```
 Salimos del editor de texto y podemos visualizar si funciona como debería usando `python3 hola.py`, esto nos debería arrojar algo como lo siguiente:
+
 ![image](https://github.com/aleguillen4/20231sTSE/assets/99856936/d23dd264-e96c-4d8c-b82f-576f754591b3)
