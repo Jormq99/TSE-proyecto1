@@ -46,4 +46,46 @@ Con esta imagen mínima agregada a la herramienta Virtual Box, se debería gener
 El user `root` es generado por defecto y permite llevar a cabo tareas administrativas con credenciales de súper usuario, pero de momento solo se ingresó para la demostración de la funcionalidad de la imagen generada.
 
 ## 2.Agregar recetas a mi imagen 
-### "Poner como se agregraron las herramientas como python, editor vim u otros a la imagen"
+Para agregar recetas a la imagen se descraga del repositorio de kirkstone la rama de `meta-openembedded` que posee un conjunto de recetas y configuraciones prácticas para nuestra imagen, como lo puede ser agregar `python3`, lo que a su vez permite utilizar bibliotecas como `OpenCV` entre otras cosas, par esto debemos clonar el repo con el siguiente comando:
+```bash
+git clone -b kirkstone https://github.com/openembedded/meta-openembedded.git
+```
+Y una vez que se tiene esto, usamos el comando:
+```bash
+bitbake-layers add-layer meta-openembedded/meta-oe
+bitbake-layers add-layer meta-openembedded/meta-python
+```
+Esto es de suma importancia para esta demostración, ya que nos permite agregar el `meta-oe` que a su vez nos permite usar herramientas como **vim** que son editores de texto o incluso **ssh** para servicios de red, al aplicar estos comandos, el archivo `bblayers.conf` se debería de ver como:
+```
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "2"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  /home/jordanimejia/yocto/poky/meta \
+  /home/jordanimejia/yocto/poky/meta-poky \
+  /home/jordanimejia/yocto/poky/meta-yocto-bsp \
+  /home/jordanimejia/yocto/poky/build/meta-openembedded/meta-oe \
+  /home/jordanimejia/yocto/poky/build/meta-openembedded/meta-python \
+  "
+```
+Para finalizar se debe configurar el archivo `local.conf` donde vamos a indicarle que debe instalar de las recetas que agregamos
+```
+IMAGE_INSTALL:append = " \
+                 python3-pip \
+                 python3-pygobject \
+                 python3-paramiko \
+                 vim \
+                 openssh \
+                 opencv \
+                "
+```
+
+Estas utilidades se escogieron debido a la necesidad del procesamiento de imágenes y video, por lo que la prueba se realiza para verificar si existe algún conflicto con estas librerías y resolverlo antes de la implementación de los programas con **OpenVino**, con esto claro, se procede a la creación de imagen **base**, ya no utilizamos la mínima
+
+```bash
+bitbake core-image-base
+```
