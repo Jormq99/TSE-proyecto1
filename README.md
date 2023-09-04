@@ -113,7 +113,7 @@ Salimos del editor de texto y podemos visualizar si funciona como debería usand
 
 ![image](https://github.com/aleguillen4/20231sTSE/assets/99856936/d23dd264-e96c-4d8c-b82f-576f754591b3)
 
-### Incluir archivos desde la creación de la imagen
+## 3.Incluir archivos desde la creación de la imagen
 Es de suma importancia la capcidad de generar la imagen con los archivos necesarios para el funcionamiento del proyecto desde su núcleo, ya que facilita la obtención de los archivos y su ejecución, para ello vamos a agregar un meta nuevo donde se van a encontrar todos lo recursos necesarios para esto, la forma de lograrlo es mediante los comandos
 
 ```bash
@@ -128,7 +128,7 @@ cd recipes-example/example
 mkdir files
 cd files
 ```
-Una vez acá agregamos los elementos que sean necesarios, para este ejemplo solo se usa un archivo **_.py_** llamado `ìncluir.py`, este se ejecutará dentro de la imagen para mostrar como funciona, pero para ello debemos configurar el documento de `example_0.1.bb`, donde vamos a agregar su licencia y archivos necesarios
+Una vez acá agregamos los elementos que sean necesarios, para este ejemplo solo se usa un archivo **_.py_** llamado `incluir.py`, este se ejecutará dentro de la imagen para mostrar como funciona, pero para ello debemos configurar el documento de `example_0.1.bb`, donde vamos a agregar su licencia y archivos necesarios
 ```vim 
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
@@ -159,8 +159,19 @@ IMAGE_INSTALL:append = " \
                 "
 ```
 
-Con esto ya tenemos configurada la creación de nuestra imagen, para este caso se utiliza la versión **_core-image-x11-qemux86-64_**, de la siguiente forma
+Al agregar la carpeta ya se tiene configurada la creación de la imagen, para este caso se utiliza la versión **_core-image-x11-qemux86-64_**, de la siguiente forma
 
 ```bash
 bitbake core-image-x11
 ```
+
+Una vez importada y agregada la imagen al **_VirtualBox_** se navega por los archivos y se ejecuta el archivo `incluir.py`
+```bash
+cd ../../usr/bin
+pyhton3 incluir.py
+```
+> [!NOTE]
+> Al iniciar la imagen el directorio es /home/root pero esto puede variar, lo importante es la ubicación de nuestros archivos
+
+El resultado se debe ver algo como esto 
+![image](https://github.com/Jormq99/TSE-proyecto1/assets/99856936/e6d0e033-9309-4fc2-bcba-85d713af42cb)
