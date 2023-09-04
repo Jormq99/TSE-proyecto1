@@ -174,5 +174,5 @@ pyhton3 incluir.py
 > Al iniciar la imagen el directorio es /home/root pero esto puede variar, lo importante es la ubicación de nuestros archivos
 
 El resultado se debe ver algo como esto 
-![image](https://github.com/Jormq99/TSE-proyecto1/assets/99856936/25abc8d0-8246-4f81-a2cb-d43c6ed64636)
+![image](https://github.com/Jormq99/TSE-proyecto1/assets/99856936/f1d7002c-7bbd-41dc-a211-d370bc6ca071)
 
