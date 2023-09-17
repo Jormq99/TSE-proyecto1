@@ -9,7 +9,7 @@ import subprocess
 import matplotlib.pyplot as plt
 from openvino.runtime import Core
 
-sys.path.append("../utils")
+sys.path.append("openvino_notebooks/notebooks/utils")
 import notebook_utils as utils
 
 # A directory where the model will be downloaded.
