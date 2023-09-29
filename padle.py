@@ -117,14 +117,14 @@ result_image = cv2.resize(result_image, image.shape[:2][::-1])
 
 
 
-fig, ax = plt.subplots(1, 2, figsize=(20, 15))
-ax[0].imshow(to_rgb(image))
-ax[1].imshow(result_image);
+#fig, ax = plt.subplots(1, 2, figsize=(20, 15))
+#ax[0].imshow(to_rgb(image))
+#ax[1].imshow(result_image);
 
 
 
 # Video source: https://www.youtube.com/watch?v=fu1xcQdJRws (Public Domain)
-VIDEO_FILE = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/video/Coco%20Walking%20in%20Berkeley.mp4"
+VIDEO_FILE = "coco.mp4"
 # Number of seconds of input video to process. Set `NUM_SECONDS` to 0 to process
 # the full video.
 NUM_SECONDS = 4
