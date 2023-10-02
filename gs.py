@@ -4,14 +4,21 @@ gi.require_version("Gst", "1.0")
 from gi.repository import Gst
 
 def main():
+    # Inicializar la biblioteca de GStreamer
+
+    Gst.init(None)
+
     # Crear el pipeline
 
     pipeline_video = Gst.Pipeline()
 
-    # Agregar el elemento filesrc
+    # Crear el elemento filesrc
 
     filesrc = Gst.ElementFactory.make("filesrc")
     filesrc.set_property("location", "coco.mp4")
+
+    # Agregar el elemento filesrc al pipeline
+
     pipeline_video.add(filesrc)
 
     # Agregar el elemento windowsink
