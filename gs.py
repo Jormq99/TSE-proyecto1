@@ -24,14 +24,14 @@ def main():
     # Crear el elemento windowsink
 
     windowsink = Gst.ElementFactory.make("windowsink")
-    windowsink.set_property("x", 100)
-    windowsink.set_property("y", 100)
-    windowsink.set_property("width", 640)
-    windowsink.set_property("height", 480)
 
     # Agregar el elemento windowsink al pipeline
 
     pipeline_video.add(windowsink)
+
+    # Establecer la propiedad x
+
+    windowsink.set_property("x", 100)
 
     # Iniciar el pipeline
 
