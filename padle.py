@@ -2,15 +2,16 @@
 #pip install -q matplotlib opencv-python requests tqdm
 
 # Fetch `notebook_utils` module
-import urllib.request
-urllib.request.urlretrieve(
-    url='https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/main/notebooks/utils/notebook_utils.py',
-    filename='notebook_utils.py'
-)
+#import urllib.request
+#urllib.request.urlretrieve(
+#   url='https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/main/notebooks/utils/notebook_utils.py',
+#    filename='notebook_utils.py'
+#)
 
 import time
 from pathlib import Path
-
+import os
+import sys
 import cv2
 import matplotlib.cm
 import matplotlib.pyplot as plt
@@ -25,18 +26,18 @@ from IPython.display import (
     display,
 )
 import openvino as ov
-
+sys.path.append("openvino_notebooks/notebooks/utils")
 from notebook_utils import download_file, load_image
 
 
 model_folder = Path('model')
 
-ir_model_url = 'https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/depth-estimation-midas/FP32/'
+#ir_model_url = 'https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/depth-estimation-midas/FP32/'
 ir_model_name_xml = 'MiDaS_small.xml'
 ir_model_name_bin = 'MiDaS_small.bin'
 
-download_file(ir_model_url + ir_model_name_xml, filename=ir_model_name_xml, directory=model_folder)
-download_file(ir_model_url + ir_model_name_bin, filename=ir_model_name_bin, directory=model_folder)
+#download_file(ir_model_url + ir_model_name_xml, filename=ir_model_name_xml, directory=model_folder)
+#download_file(ir_model_url + ir_model_name_bin, filename=ir_model_name_bin, directory=model_folder)
 
 model_xml_path = model_folder / ir_model_name_xml
 
@@ -73,7 +74,7 @@ def to_rgb(image_data) -> np.ndarray:
 
 import ipywidgets as widgets
 
-core = ov.Core()
+core = ov.runtime.Core()
 device = widgets.Dropdown(
     options=core.available_devices + ["AUTO"],
     value='AUTO',
@@ -84,7 +85,7 @@ device = widgets.Dropdown(
 device
 
 
-core = ov.Core()
+core = ov.runtime.Core()
 core.set_property({'CACHE_DIR': '../cache'})
 model = core.read_model(model_xml_path)
 compiled_model = core.compile_model(model=model, device_name=device.value)
