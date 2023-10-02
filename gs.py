@@ -1,48 +1,59 @@
 import gi
+gi.require_version('Gst', '1.0')
+from gi.repository import GObject, Gst, Gtk
 
-gi.require_version("Gst", "1.0")
-from gi.repository import Gst
+Gst.init(None)
 
-def main():
-    # Inicializar la biblioteca de GStreamer
+class MyApp(Gtk.Window):
 
-    Gst.init(None)
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Audio y Video Bidireccional")
 
-    # Crear el pipeline
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(vbox)
 
-    pipeline_video = Gst.Pipeline()
+        # Creamos los elementos de GStreamer
+        self.pipeline = Gst.Pipeline()
+        self.src = Gst.ElementFactory.make('v4l2src', 'webcam')
+        self.vidconvert = Gst.ElementFactory.make('videoconvert', 'vidconvert')
+        self.vidcaps = Gst.ElementFactory.make('capsfilter', 'vidcaps')
+        self.vidcaps.set_property('caps', Gst.Caps.from_string('video/x-raw, width=640, height=480'))
+        self.videosink = Gst.ElementFactory.make('autovideosink', 'videosink')
+        self.sink = Gst.ElementFactory.make('alsasink', 'audiosink')
+        self.mute = False
 
-    # Crear el elemento filesrc
+        # Agregamos los elementos al pipeline
+        self.pipeline.add(self.src)
+        self.pipeline.add(self.vidconvert)
+        self.pipeline.add(self.vidcaps)
+        self.pipeline.add(self.videosink)
+        self.pipeline.add(self.sink)
 
-    filesrc = Gst.ElementFactory.make("filesrc")
-    filesrc.set_property("location", "coco.mp4")
+        # Conectamos los elementos
+        self.src.link(self.vidconvert)
+        self.vidconvert.link(self.vidcaps)
+        self.vidcaps.link(self.videosink)
+        self.src.link(self.sink)
 
-    # Agregar el elemento filesrc al pipeline
+        # Creamos un botón para mutear el audio
+        self.mute_button = Gtk.Button(label="Mute Audio")
+        self.mute_button.connect("clicked", self.on_mute_button_clicked)
+        vbox.pack_start(self.mute_button, True, True, 0)
 
-    pipeline_video.add(filesrc)
+        # Iniciamos el pipeline
+        self.pipeline.set_state(Gst.State.PLAYING)
 
-    # Crear el elemento windowsink
+    def on_mute_button_clicked(self, widget):
+        if not self.mute:
+            self.pipeline.set_state(Gst.State.PAUSED)
+            self.mute_button.set_label("Unmute Audio")
+            self.mute = True
+        else:
+            self.pipeline.set_state(Gst.State.PLAYING)
+            self.mute_button.set_label("Mute Audio")
+            self.mute = False
 
-    windowsink = Gst.ElementFactory.make("windowsink")
-
-    # Agregar el elemento windowsink al pipeline
-
-    pipeline_video.add(windowsink)
-
-    # Establecer la propiedad x
-
-    windowsink.set_property("x", 100)
-    windowsink.set_property("y", 100)
-    windowsink.set_property("width", 640)
-    windowsink.set_property("height", 480)
-
-    # Iniciar el pipeline
-
-    pipeline_video.set_state(Gst.State.PLAYING)
-
-    # Esperar a que el pipeline termine
-
-    pipeline_video.get_state(Gst.ClockTime.TIME_NONE)
-
-if __name__ == "__main__":
-    main()
+win = MyApp()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()
