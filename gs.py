@@ -37,9 +37,9 @@ class MyApp(Gtk.Window):
         self.src.link(self.sink)
     
         # Creamos un botón para mutear el audio
-        self.mute_button = Gtk.Button(label="Mute Audio")
-        self.mute_button.connect("clicked", self.on_mute_button_clicked)
-        vbox.pack_start(self.mute_button, True, True, 0)
+        #self.mute_button = Gtk.Button(label="Mute Audio")
+        #self.mute_button.connect("clicked", self.on_mute_button_clicked)
+        #vbox.pack_start(self.mute_button, True, True, 0)
     
         # Iniciamos el pipeline
         self.pipeline.set_state(Gst.State.PLAYING)
